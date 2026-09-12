@@ -2038,9 +2038,11 @@ module.exports = {
 				name: 'White Balance - Kelvin Value Up',
 				options: [],
 				callback: async (action) => {
-					if (self.kelvinIndex >= s.kelvin.dropdown.length) {
-						self.kelvinIndex = s.kelvin.dropdown.length
-					} else if (self.kelvinIndex < s.kelvin.dropdown.length) {
+					const currentIndex = s.kelvin.dropdown.findIndex((KELVIN) => KELVIN.id == self.data.kelvinValue)
+					if (currentIndex >= 0) {
+						self.kelvinIndex = currentIndex
+					}
+					if (self.kelvinIndex < s.kelvin.dropdown.length - 1) {
 						self.kelvinIndex++
 					}
 					self.kelvinValue = s.kelvin.dropdown[self.kelvinIndex].id
@@ -2055,9 +2057,11 @@ module.exports = {
 				name: 'White Balance - Kelvin Value Down',
 				options: [],
 				callback: async (action) => {
-					if (self.kelvinIndex <= 0) {
-						self.kelvinIndex = 0
-					} else if (self.kelvinIndex > 0) {
+					const currentIndex = s.kelvin.dropdown.findIndex((KELVIN) => KELVIN.id == self.data.kelvinValue)
+					if ( currentIndex >= 0) {
+						self.kelvinIndex = currentIndex
+					}
+					if (self.kelvinIndex > 0) {
 						self.kelvinIndex--
 					}
 					self.kelvinValue = s.kelvin.dropdown[self.kelvinIndex].id
